@@ -50,7 +50,7 @@
       },
       watch: {
         performance(val) {
-          this.filteredData = val == 'All' ? this.data : this.jsonData.filter((p) => p.performance == val)
+          this.filteredData = val == 'All' ? this.jsonData : this.jsonData.filter((p) => p.performance == val)
         }
       },
       data: () => ({
