@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import json from './../assets/all_performance.json'
+  import json from '../assets/all_performance.json'
 
   export default {
     methods: {
