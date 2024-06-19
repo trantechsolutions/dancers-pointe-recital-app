@@ -1,5 +1,7 @@
 <template>
   <v-container class="mt-5">
+    
+    As of June 18, 2024. Subject to change.
           <v-card :title="title" flat>
             <template v-slot:text>
               <v-text-field
@@ -27,13 +29,11 @@
               </template>
             </v-data-table>
           </v-card>
-          As of June 18, 2024. Subject to change.
         </v-container>
 </template>
 
 <script>
   import json from './../assets/all_performance.json'
-  import axios from 'axios'
 
   export default {
     methods: {
