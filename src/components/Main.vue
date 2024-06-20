@@ -6,27 +6,28 @@
             <template v-slot:text>
               <v-text-field
                 v-model="search"
-                label="Search"
+                label="Search for participants"
                 prepend-inner-icon="mdi-magnify"
                 variant="outlined"
                 hide-details
                 single-line
               ></v-text-field>
             </template>
+            {{ search }}
         
-            <v-data-table :headers="headers" :items="filteredData" :search="search" :items-per-page="0" :item-value="getGuid"
-              hide-default-footer disable-sort>
+            <v-data-table :headers="headers" :items="filteredData" :items-per-page="0" :item-value="getGuid"
+              hide-default-footer disable-sort show-expand>
 
               <template v-slot:header.performance="{ column }">
                 <v-select :items="dropdown" v-model="performance" label="Performance">
                 </v-select>
               </template>
 
-              <template v-slot:item.participants="{ item }">
+              <!-- <template v-slot:item.participants="{ item }">
                 <v-chip class="ma-1" size="default" v-for="(performer, index) in item.participants">{{ performer }}</v-chip>
-              </template>
+              </template> -->
 
-              <!-- <template v-slot:expanded-row="{ columns, item }">
+              <template v-slot:expanded-row="{ columns, item }">
                 <tr>
                   <td :colspan="columns.length">
                     <strong>Participants</strong>
@@ -36,7 +37,7 @@
                     </p>
                   </td>
                 </tr>
-              </template> -->
+              </template>
             </v-data-table>
           </v-card>
         </v-container>
@@ -57,18 +58,25 @@
         }
       },
       mounted() {
-        this.jsonData = json
-        this.filteredData = this.jsonData          
+        this.filteredData = json        
       },
       watch: {
         performance(val) {
-          this.filteredData = val == 'All' ? this.jsonData : this.jsonData.filter((p) => p.performance == val)
+          this.filteredData = val == 'All' ? json : this.filteredData.filter((p) => p.performance == val)
+          this.search = ''
+        },
+        search(val) {         
+          this.filteredData = val == '' ? this.filteredData : this.filteredData.filter((p) => p.participants.some((name) => name.toLowerCase().includes(val.toLowerCase())))
         }
       },
       data: () => ({
         search: '',
-        headers: [{ title: 'Performance', key: 'performance', width: '20%' }, { title: 'Number', key: 'performance_number' }, { title: 'Title', key: 'performance_name' }, { title: 'Participants', key:'participants' }],
-        jsonData: [],
+        headers: [
+          { title: 'Performance', key: 'performance' },
+          { title: 'Number', key: 'performance_number' },
+          { title: 'Title', key: 'performance_name' }, 
+          // { title: 'Participants', key:'participants' }
+        ],
         dropdown: [
           { title: 'All' },
           { title: 'Metairie AM' },
@@ -77,7 +85,7 @@
           { title: 'Lakeview PM' },
         ],
         performance: 'All',
-        filteredData: [],
+        filteredData: json,
       })
   }
 </script>
