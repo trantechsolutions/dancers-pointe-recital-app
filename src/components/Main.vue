@@ -13,7 +13,6 @@
                 single-line
               ></v-text-field>
             </template>
-            {{ search }}
         
             <v-data-table :headers="headers" :items="filteredData" :items-per-page="0" :item-value="getGuid"
               hide-default-footer disable-sort show-expand>
@@ -62,11 +61,12 @@
       },
       watch: {
         performance(val) {
-          this.filteredData = val == 'All' ? json : this.filteredData.filter((p) => p.performance == val)
-          this.search = ''
+          const participants = this.search == '' ? json : json.filter((p) => p.participants.some((name) => name.toLowerCase().includes(this.search.toLowerCase())))
+          this.filteredData = val == 'All' ? participants : participants.filter((p) => p.performance == val)
         },
         search(val) {         
-          this.filteredData = val == '' ? this.filteredData : this.filteredData.filter((p) => p.participants.some((name) => name.toLowerCase().includes(val.toLowerCase())))
+          const performance = this.performance == 'All' ? json : json.filter((p) => p.performance == this.performance)
+          this.filteredData = val == '' ? performance : performance.filter((p) => p.participants.some((name) => name.toLowerCase().includes(val.toLowerCase())))
         }
       },
       data: () => ({
