@@ -64,7 +64,7 @@
       data: () => ({
         search: '',
         headers: [{ title: 'Performance', key: 'performance', width: '20%' }, { title: 'Number', key: 'performance_number' }, { title: 'Title', key: 'performance_name' }],
-        jsonData: [],
+        jsonData: json,
         dropdown: [
           { title: 'All' },
           { title: 'Metairie AM' },
