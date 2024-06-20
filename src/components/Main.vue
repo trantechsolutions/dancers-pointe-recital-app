@@ -23,15 +23,9 @@
                 </v-select>
               </template>
 
-<<<<<<< HEAD
               <!-- <template v-slot:item.participants="{ item }">
                 <v-chip class="ma-1" size="default" v-for="(performer, index) in item.participants">{{ performer }}</v-chip>
               </template> -->
-=======
-              <template v-slot:item.participants="{ item }">
-                <v-chip I size="x-small" v-for="(performer, index) in item.participants">{{ performer }}</v-chip>
-              </template>
->>>>>>> 0455f76190d6a474bad887c2e22292891ba1d74d
 
               <template v-slot:expanded-row="{ columns, item }">
                 <tr>
