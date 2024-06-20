@@ -15,24 +15,28 @@
             </template>
         
             <v-data-table :headers="headers" :items="filteredData" :search="search" :items-per-page="0" :item-value="getGuid"
-              hide-default-footer disable-sort show-expand>
+              hide-default-footer disable-sort>
 
               <template v-slot:header.performance="{ column }">
                 <v-select :items="dropdown" v-model="performance" label="Performance">
                 </v-select>
               </template>
 
-              <template v-slot:expanded-row="{ columns, item }">
+              <template v-slot:item.participants="{ item }">
+                <v-chip class="ma-1" size="default" v-for="(performer, index) in item.participants">{{ performer }}</v-chip>
+              </template>
+
+              <!-- <template v-slot:expanded-row="{ columns, item }">
                 <tr>
                   <td :colspan="columns.length">
                     <strong>Participants</strong>
-                    <p v-if="item.participants.length <= 0"><v-chip class="ma-1" size="default" >{{ item.performance_name }}</v-chip></p>
                     <p>
-                      <v-chip class="ma-1" size="default" v-for="(performer, index) in item.participants">{{ performer }}</v-chip>
+                      <v-chip class="ma-1" size="default" v-if="item.participants.length <= 0">{{ item.performance_name }}</v-chip>
+                      <v-chip class="ma-1" size="default" v-else v-for="(performer, index) in item.participants">{{ performer }}</v-chip>
                     </p>
                   </td>
                 </tr>
-              </template>
+              </template> -->
             </v-data-table>
           </v-card>
         </v-container>
@@ -63,7 +67,7 @@
       },
       data: () => ({
         search: '',
-        headers: [{ title: 'Performance', key: 'performance', width: '20%' }, { title: 'Number', key: 'performance_number' }, { title: 'Title', key: 'performance_name' }],
+        headers: [{ title: 'Performance', key: 'performance', width: '20%' }, { title: 'Number', key: 'performance_number' }, { title: 'Title', key: 'performance_name' }, { title: 'Participants', key:'participants' }],
         jsonData: [],
         dropdown: [
           { title: 'All' },
