@@ -23,7 +23,7 @@
               </template>
 
               <template v-slot:item.participants="{ item }">
-                <v-chip class="ma-1" size="default" v-for="(performer, index) in item.participants">{{ performer }}</v-chip>
+                <v-chip I size="x-small" v-for="(performer, index) in item.participants">{{ performer }}</v-chip>
               </template>
 
               <!-- <template v-slot:expanded-row="{ columns, item }">
