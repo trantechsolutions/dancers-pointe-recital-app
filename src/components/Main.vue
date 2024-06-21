@@ -28,8 +28,8 @@
 
               <template v-slot:expanded-row="{ columns, item }">
                 <tr>
-                  <td :colspan="columns.length">
-                    <strong>Participants</strong>
+                  <td :colspan="columns.length" class="pa-5">
+                    <h3>Participants</h3>
                     <p>
                       <v-chip class="ma-1" size="default" v-if="item.participants.length <= 0">{{ item.performance_name }}</v-chip>
                       <v-chip class="ma-1" size="default" v-else v-for="(performer, index) in item.participants">{{ performer }}</v-chip>
@@ -54,10 +54,10 @@
       computed: {
         title() {
           return `${this.performance} Recital Performances`
-        }
+        },
       },
       mounted() {
-        this.filteredData = json        
+        this.filteredData = json
       },
       watch: {
         performance(val) {
