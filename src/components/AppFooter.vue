@@ -14,29 +14,37 @@
         :size="16"
       />
     </a>
+    <div
+      class="text-caption text-disabled"     
+    >Build {{ build }}</div>
 
     <div
       class="text-caption text-disabled"
       style="position: absolute; right: 16px;"
     >
-      &copy; {{ (new Date()).getFullYear() }} <span class="d-none d-sm-inline-block">Dancer's Pointe, LLC</span>
+    &copy; {{ (new Date()).getFullYear() }} <span class="d-none d-sm-inline-block">Dancer's Pointe, LLC</span>
     </div>
   </v-footer>
 </template>
 
-<script setup>
-  const items = [
-    {
-      title: 'Dancer\'s Pointe Website',
-      icon: 'mdi-earth',
-      href: 'https://dancers-pointe.com/',
-    },
-    {
-      title: 'Facebook - Dancer\'s Pointe',
-      icon: 'mdi-facebook',
-      href: 'https://www.facebook.com/DancersPointeDP/',
-    },
-  ]
+<script>
+export default {
+  data: () => ({
+    build: import.meta.env.VITE_APP_GIT_REVISION,
+    items: [
+      {
+        title: 'Dancer\'s Pointe Website',
+        icon: 'mdi-earth',
+        href: 'https://dancers-pointe.com/',
+      },
+      {
+        title: 'Facebook - Dancer\'s Pointe',
+        icon: 'mdi-facebook',
+        href: 'https://www.facebook.com/DancersPointeDP/',
+      },
+    ]
+  })
+}
 </script>
 
 <style scoped lang="sass">

@@ -1,6 +1,5 @@
 <template>
   <v-container class="mt-5">
-    
     As of June 18, 2024. Subject to change.
           <v-card :title="title" flat>
             <template v-slot:text>
@@ -74,8 +73,7 @@
         headers: [
           { title: 'Performance', key: 'performance' },
           { title: 'Number', key: 'performance_number' },
-          { title: 'Title', key: 'performance_name' }, 
-          // { title: 'Participants', key:'participants' }
+          { title: 'Title', key: 'performance_name' },
         ],
         dropdown: [
           { title: 'All' },
