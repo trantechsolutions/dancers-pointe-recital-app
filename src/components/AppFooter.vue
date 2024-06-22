@@ -16,7 +16,7 @@
     </a>
     <div
       class="text-caption text-disabled"     
-    >Build {{ build }}</div>
+    >Build prod.{{ build }}</div>
 
     <div
       class="text-caption text-disabled"
